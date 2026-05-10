@@ -30,10 +30,11 @@ Carte* pioche(){
     return paquet;
 }
 
-void affiche_pioche(){
+void affiche_pioche(Carte* paquet){
     for (int i=0; i<79; i++){
-        printf("%d ", pioche()[i].numero);
+        printf("%d ", paquet[i].numero);
     }
+    printf(\n);
 }
 
 
