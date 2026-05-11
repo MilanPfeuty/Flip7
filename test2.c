@@ -49,3 +49,5 @@ int main(){
 
     return 0;
 }
+
+https://chatgpt.com/gg/v/69eb9e1c536c819f8659a893cb4cb96d?token=wndHod3SwHn4uZOz0RF2_g
