@@ -1,4 +1,4 @@
-#include 'projet.h'
+#include 'Projet.h'
 
 void calcul_score(Joueur j){
     

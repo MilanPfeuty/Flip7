@@ -1,4 +1,4 @@
-#include 'projet.h'
+#include 'Projet.h'
 #include <stdlib.h>
 #include <math.h>
 #include <stdio.h>

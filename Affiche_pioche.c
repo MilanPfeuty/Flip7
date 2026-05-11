@@ -1,4 +1,4 @@
-#include 'projet.h'
+#include 'Projet.h'
 
 
 void affiche_pioche(Carte* paquet){

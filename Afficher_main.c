@@ -1,4 +1,4 @@
-#include 'projet.h'
+#include 'Projet.h'
 
 void afficher_main(Joueur j){
     printf("Main de %s: ", j.nom);

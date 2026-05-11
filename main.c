@@ -1,7 +1,4 @@
-#include <stdlib.h>
-#include <stdio.h>
-#include <time.h>
-
+#include 'Projet.h'
 
 int main(){
     srand(time(NULL));
@@ -10,8 +7,9 @@ int main(){
 
     creer_pioche(paquet);   
     affiche_pioche(paquet); 
-    Carte c = carte_pioche(paquet);
-    printf("Carte piochée : %d\n", c.numero);
+    int index = 0;
+    Carte carte = carte_pioche(paquet, index);
+    printf("Carte piochée : %d\n", carte.numero);
 
     return 0;
 }
