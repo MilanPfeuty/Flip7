@@ -1,3 +1,5 @@
+#include 'projet.h'
+
 void afficher_main(Joueur j){
     printf("Main de %s: ", j.nom);
 

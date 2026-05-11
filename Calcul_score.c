@@ -1,3 +1,5 @@
+#include 'projet.h'
+
 void calcul_score(Joueur j){
     
     j.score = 0;
