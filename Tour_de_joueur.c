@@ -1,4 +1,4 @@
-#include 'Projet.h'
+#include "Projet.h"
 
 void tour_joueur(Carte paquet[], int *index, int main[], int *taille, int *score, int *actif) {
 

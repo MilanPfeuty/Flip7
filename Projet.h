@@ -3,12 +3,17 @@
 #include <time.h>
 #include <string.h>
 
+void creer_pioche(Carte paquet[]);
+Carte carte_pioche(Carte paquet[], int *index);
+void afficher_joueur(int score, Carte cartes[], int taille);
+int demander_choix();
 
 typedef struct{
     char nom[100];
     int score;
     Carte main[7];
     int nb_carte;
+    int actif;
 }Joueur;
 
 

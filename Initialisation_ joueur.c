@@ -1,4 +1,4 @@
-#include 'Projet.h'
+#include "Projet.h"
 
 void init_joueur(Joueur *j, char nom[]){
     strcpy(j->nom, nom);   // faudra mettre string.h

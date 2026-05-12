@@ -1,4 +1,4 @@
-#include 'Projet.h'
+#include "Projet.h"
 
 void afficher_joueur(int score, Carte cartes[], int taille) {
     printf("\n--- JOUEUR ---\n");
