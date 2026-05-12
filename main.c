@@ -1,6 +1,6 @@
 #include "Projet.h"
 
-int jeu_prs(){
+int main_joueurs(){
     srand(time(NULL));
 
     Carte paquet[79];
