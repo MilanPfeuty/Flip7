@@ -1,6 +1,6 @@
 #include 'Projet.h'
 
-void afficher_joueur(int score, Cartes cartes[], int taille) {
+void afficher_joueur(int score, Carte cartes[], int taille) {
     printf("\n--- JOUEUR ---\n");
 
     printf("Main : ");
