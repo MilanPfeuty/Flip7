@@ -7,7 +7,7 @@
 
 typedef struct{
     int numero;
-}Carte
+}Carte;
 
 
 Carte* pioche(){
