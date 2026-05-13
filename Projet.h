@@ -1,7 +1,16 @@
+#ifndef PROJET_H
+#define PROJET_H
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
 #include <string.h>
+
+
+typedef struct{
+    int numero;
+} Carte;
+
 
 typedef struct{
     char nom[100];
@@ -12,11 +21,21 @@ typedef struct{
 }Joueur;
 
 
-typedef struct{
-    int numero;
-} Carte;
-
-void creer_pioche(Carte paquet[]);
-Carte carte_pioche(Carte paquet[], int *index);
+int start();
 void afficher_joueur(int score, Carte cartes[], int taille);
-int demander_choix();
+void affiche_pioche(Carte* paquet);
+void afficher_main(Joueur j);
+void calcul_score(Joueur j);
+Carte carte_piochee(Carte paquet[], int *index);
+void creer_pioche(Carte paquet[]);
+int choix_joueur();
+void init_joueur(Joueur *j, char nom[]);
+int manche_perdue(Joueur j, Carte c);
+void restitution_nb_cartes(Joueur* j);
+void restitution_score(Joueur* j);
+void tour_joueur(Carte paquet[], int *index, Carte main[], int *taille, int *score, int *actif);
+
+
+int main_joueurs();
+
+#endif
