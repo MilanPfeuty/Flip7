@@ -21,7 +21,7 @@ typedef struct{
 }Joueur;
 
 
-int start();
+int start(Joueur joueurs[], int *nb_joueurs);
 void afficher_joueur(int score, Carte cartes[], int taille);
 void affiche_pioche(Carte* paquet);
 void afficher_main(Joueur j);
