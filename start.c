@@ -1,6 +1,6 @@
 #include "Projet.h"
 
-int start(){
+int start(Joueur joueurs[], int *nb_joueurs){
     int nb_joueurs[10];
     Joueur *joueurs;
 
