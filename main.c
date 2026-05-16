@@ -5,7 +5,10 @@ int main(){
 
     Carte paquet[79];
 
-    start();
+    Joueur joueurs[10];
+    int nb_joueurs;
+
+    start(joueurs, &nb_joueurs);
 
     creer_pioche(paquet);
     affiche_pioche(paquet);

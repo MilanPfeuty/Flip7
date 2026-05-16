@@ -2,7 +2,7 @@
 
 void tour_joueur(Carte paquet[], int *index, Carte main[], int *taille, int *score, int *actif){
 
-    if (!(*actif)) return;
+    if (*actif == 0) return;
 
     if (*index >= 79) {
         printf("Plus de cartes !\n");
@@ -28,9 +28,8 @@ void tour_joueur(Carte paquet[], int *index, Carte main[], int *taille, int *sco
     main[*taille] = c;
     (*taille)++;
 
-    // Score
+    // Ajouter au score
     *score += c.numero;
-
     // Affichage
     afficher_joueur(*score, main, *taille);
 
@@ -46,3 +45,4 @@ void tour_joueur(Carte paquet[], int *index, Carte main[], int *taille, int *sco
         *actif = 0;
     }
 }
+
