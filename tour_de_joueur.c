@@ -19,7 +19,7 @@ void tour_joueur(Carte paquet[], int *index, Carte main[], int *taille, int *sco
     }
 
     // Ajouter à la main
-    main[*taille].numero = c.numero;
+    main[*taille] = c;
     (*taille)++;
 
     // Ajouter au score
