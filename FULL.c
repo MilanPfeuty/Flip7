@@ -1,5 +1,3 @@
-#ifndef PROJET_H
-#define PROJET_H
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -151,7 +149,6 @@ void restitution_score(Joueur* j){
 
 
 
-
 int start(){
     int nb_joueurs[10];
     Joueur *joueurs;
@@ -167,27 +164,6 @@ int start(){
     }
     return 0;
 }
-
-
-/*typedef struct{
-    int numero;
-}Carte;
-*/
-
-
-
-/*typedef struct{
-    char nom[100];
-    int score;
-    Carte main[7];
-    int nb_carte;
-}Joueur;
-*/
-
-
-
-
-
 
 
 
@@ -265,7 +241,3 @@ int main(){
 
     return 0;
 }
-
-
-#endif
-
