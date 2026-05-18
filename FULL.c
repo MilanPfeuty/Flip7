@@ -240,14 +240,7 @@ int main(){
 
                 printf("\n=== Tour de %s ===\n", joueurs[i].nom);
 
-                tour_joueur(
-                    paquet,
-                    &index,
-                    joueurs[i].main,
-                    &joueurs[i].nb_carte,
-                    &joueurs[i].score,
-                    &joueurs[i].actif
-                );
+                tour_joueur(paquet, &index, joueurs[i].main, &joueurs[i].nb_carte, &joueurs[i].score, &joueurs[i].actif);
 
                 if (joueurs[i].actif == 0) {
                     joueurs_actifs--;
