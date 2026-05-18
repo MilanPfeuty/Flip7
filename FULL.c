@@ -151,8 +151,6 @@ void restitution_score(Joueur* j){
 
 int start(Joueur joueurs[], int *nb_joueurs){
 
-    printf("Combien de joueurs ? : ");
-    scanf("%d",nb_joueurs);
     for(int i = 0 ;i < *nb_joueurs ; i++){
         printf("Entrez le nom/pseudo du joueur %d : ", i+1);
         scanf("%s",joueurs[i].nom);
