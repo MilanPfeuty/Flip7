@@ -23,7 +23,7 @@ int start(Joueur joueurs[], int *nb_joueurs);
 void afficher_joueur(int score, Carte cartes[], int taille);
 void affiche_pioche(Carte* paquet);
 void afficher_main(Joueur j);
-void calcul_score(Joueur j);
+void calcul_score(Joueur *j);
 Carte carte_piochee(Carte paquet[], int *index);
 void creer_pioche(Carte paquet[]);
 int choix_joueur();
@@ -68,9 +68,9 @@ void afficher_main(Joueur j){
 
 void calcul_score(Joueur *j){
     
-    j.score = 0;
-    for(int i=0; i<j.nb_carte; i++){
-        j.score += j.main[i].numero;
+    j-> score = 0;
+    for(int i=0; i<j-> nb_carte; i++){
+        j-> score += j-> main[i].numero;
     }
 }
 
@@ -155,18 +155,6 @@ void vide_buffer() {
 
 int start(Joueur joueurs[], int *nb_joueurs) {
 
-    int verif = 0;
-
-    do {
-        printf("Combien de joueurs ? : ");
-        verif = scanf("%d", nb_joueurs);
-        vide_buffer();
-
-        if (verif != 1) {
-            printf("Erreur, entrer un entier\n");
-        }
-    } while (verif != 1);
-
     for (int i = 0; i < *nb_joueurs; i++) {
         printf("Nom du joueur %d : ", i + 1);
         scanf("%s", joueurs[i].nom);
@@ -239,12 +227,21 @@ int main(){
     Joueur *joueurs;
     int nb_joueurs;
 
-    printf("Combien de joueurs ? : ");
-    scanf("%d", &nb_joueurs);
+    int verif = 0;
+
+    do {
+        printf("Combien de joueurs ? : ");
+        verif = scanf("%d", nb_joueurs);
+        vide_buffer();
+
+        if (verif != 1) {
+            printf("Erreur, entrer un entier\n");
+        }
+    } while (verif != 1);
 
     joueurs = malloc(nb_joueurs * sizeof(Joueur));
     
-    if(joueur == NULL){
+    if(joueurs == NULL){
         printf("erreur d'allocation");
         exit(1);
     }
