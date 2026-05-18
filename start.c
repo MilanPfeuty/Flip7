@@ -1,5 +1,5 @@
 #include "Projet.h"
-#include <stdio.h>
+
 
 void vide_buffer() {
     while (getchar() != '\n');
