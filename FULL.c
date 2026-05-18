@@ -243,6 +243,11 @@ int main(){
     scanf("%d", &nb_joueurs);
 
     joueurs = malloc(nb_joueurs * sizeof(Joueur));
+    
+    if(joueur == NULL){
+        printf("erreur d'allocation");
+        exit(1);
+    }
 
     start(joueurs, &nb_joueurs);
 
