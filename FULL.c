@@ -36,16 +36,6 @@ void restitution_score(Joueur* j);
 void tour_joueur(Carte paquet[], int *index, Carte main[], int *taille, int *score, int *actif);
 
 
-int main_joueurs();
-
-#endif
-
-
-
-
-
-
-
 
 
 void afficher_joueur(int score, Carte cartes[], int taille){
@@ -277,4 +267,5 @@ int main(){
 }
 
 
+#endif
 
