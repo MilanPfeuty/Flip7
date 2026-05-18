@@ -1,10 +1,6 @@
 #include "Projet.h"
 
 
-void vide_buffer() {
-    while (getchar() != '\n');
-}
-
 int start(Joueur joueurs[], int *nb_joueurs) {
 
     int verif = 0;
