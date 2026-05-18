@@ -1,12 +1,26 @@
 #include "Projet.h"
+#include <stdio.h>
 
-int start(Joueur joueurs[], int *nb_joueurs){
+void vide_buffer() {
+    while (getchar() != '\n');
+}
 
-    printf("Combien de joueurs ? : ");
-    scanf("%d", nb_joueurs);
+int start(Joueur joueurs[], int *nb_joueurs) {
 
-    for(int i = 0; i < *nb_joueurs; i++){
-        printf("Nom du joueur %d : ", i+1);
+    int verif = 0;
+
+    do {
+        printf("Combien de joueurs ? : ");
+        verif = scanf("%d", nb_joueurs);
+        vide_buffer();
+
+        if (verif != 1) {
+            printf("Erreur, entrer un entier\n");
+        }
+    } while (verif != 1);
+
+    for (int i = 0; i < *nb_joueurs; i++) {
+        printf("Nom du joueur %d : ", i + 1);
         scanf("%s", joueurs[i].nom);
 
         joueurs[i].score = 0;
