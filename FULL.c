@@ -159,8 +159,9 @@ int start(){
         printf("Entrez le nom/pseudo du joueur %d : ", i+1);
         scanf("%s",joueurs[i].nom);
 
-        joueurs[i].score=0;
-        joueurs[i].actif=1;
+        joueurs[i].score = 0;
+        joueurs[i].actif = 1;
+        joueurs[i].nb_cartes = 0;
     }
     return 0;
 }
