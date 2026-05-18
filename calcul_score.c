@@ -1,9 +1,9 @@
 #include "Projet.h"
 
-void calcul_score(Joueur j){
+void calcul_score(Joueur *j){
     
-    j.score = 0;
-    for(int i=0; i<j.nb_carte; i++){
-        j.score += j.main[i].numero;
+    j-> score = 0;
+    for(int i=0; i<j-> nb_carte; i++){
+        j-> score += j-> main[i].numero;
     }
 }

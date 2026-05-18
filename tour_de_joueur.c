@@ -1,48 +1,44 @@
 #include "Projet.h"
 
-void tour_joueur(Carte paquet[], int *index, Carte main[], int *taille, int *score, int *actif){
+void tour_joueur(Carte paquet[], int *taille_pioche, Carte main[], int *taille, int *score, int *actif, int *perdu){
 
     if (*actif == 0) return;
-
-    if (*index >= 79) {
+    
+    if (*taille_pioche <= 0) {
         printf("Plus de cartes !\n");
         *actif = 0;
         return;
     }
 
-    // Piocher
-    Carte c = paquet[(*index)++];
-
+    Carte c = carte_piochee(paquet, taille_pioche);
     printf("\nCarte piochée : %d\n", c.numero);
 
     // Vérifier doublon
     for (int i = 0; i < *taille; i++) {
         if (main[i].numero == c.numero) {
-            printf("💀 Doublon ! Perdu !\n");
+            printf("Doublon ! Perdu !\n");
             *actif = 0;
+            *perdu = 1;
             return;
         }
     }
 
-    // Ajouter à la main
+    // Ajouter carte
     main[*taille] = c;
     (*taille)++;
 
-    // Ajouter au score
+    // Ajouter score
     *score += c.numero;
-    // Affichage
+
     afficher_joueur(*score, main, *taille);
 
-    // Victoire
     if (*taille == 7) {
-        printf("🎉 Victoire !\n");
+        printf(" Victoire !\n");
         *actif = 0;
         return;
     }
 
-    // Choix joueur
     if (choix_joueur() == 0) {
         *actif = 0;
     }
 }
-
