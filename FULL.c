@@ -1,5 +1,3 @@
-#include "Projet.h"
-
 #ifndef PROJET_H
 #define PROJET_H
 
