@@ -18,7 +18,7 @@ typedef struct{
     int actif;
 }Joueur;
 
-void vide_buffer()
+void vide_buffer();
 int start(Joueur joueurs[], int *nb_joueurs);
 void afficher_joueur(int score, Carte cartes[], int taille);
 void affiche_pioche(Carte* paquet);
