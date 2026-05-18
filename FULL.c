@@ -66,7 +66,7 @@ void afficher_main(Joueur j){
 }
 
 
-void calcul_score(Joueur j){
+void calcul_score(Joueur *j){
     
     j.score = 0;
     for(int i=0; i<j.nb_carte; i++){
@@ -149,9 +149,7 @@ void restitution_score(Joueur* j){
 
 
 
-int start(){
-    int nb_joueurs[10];
-    Joueur *joueurs;
+int start(Joueur joueurs[], int *nb_joueurs){
 
     printf("Combien de joueurs ? : ");
     scanf("%d",nb_joueurs);
@@ -161,7 +159,7 @@ int start(){
 
         joueurs[i].score = 0;
         joueurs[i].actif = 1;
-        joueurs[i].nb_cartes = 0;
+        joueurs[i].nb_carte = 0;
     }
     return 0;
 }
@@ -217,28 +215,56 @@ void tour_joueur(Carte paquet[], int *index, Carte main[], int *taille, int *sco
 
 
 
-
-
 int main(){
     srand(time(NULL));
 
     Carte paquet[79];
+    creer_pioche(paquet);
 
-    Joueur joueurs[10];
+    Joueur *joueurs;
     int nb_joueurs;
+
+    printf("Combien de joueurs ? : ");
+    scanf("%d", &nb_joueurs);
+
+    joueurs = malloc(nb_joueurs * sizeof(Joueur));
 
     start(joueurs, &nb_joueurs);
 
-    creer_pioche(paquet);
-    affiche_pioche(paquet);
-
-
-
     int index = 0;
-    Carte carte = carte_piochee(paquet, &index);
-    printf("Carte piochée : %d\n", carte.numero);
+    int joueurs_actifs = nb_joueurs;
 
+    while (joueurs_actifs > 0) {
 
+        for (int i = 0; i < nb_joueurs; i++) {
+
+            if (joueurs[i].actif == 1) {
+
+                printf("\n=== Tour de %s ===\n", joueurs[i].nom);
+
+                tour_joueur(
+                    paquet,
+                    &index,
+                    joueurs[i].main,
+                    &joueurs[i].nb_carte,
+                    &joueurs[i].score,
+                    &joueurs[i].actif
+                );
+
+                if (joueurs[i].actif == 0) {
+                    joueurs_actifs--;
+                }
+            }
+        }
+    }
+
+    printf("\n=== FIN DE PARTIE ===\n");
+
+    for (int i = 0; i < nb_joueurs; i++) {
+        printf("%s : %d points\n", joueurs[i].nom, joueurs[i].score);
+    }
+
+    free(joueurs); // très important
 
     return 0;
 }
