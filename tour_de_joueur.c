@@ -1,9 +1,9 @@
 #include "Projet.h"
 
-void tour_joueur(Carte paquet[], int *taille_pioche, Carte main[], int *taille, int *score, int *actif, int *perdu){
+void tour_joueur(Carte paquet[], int *taille_pioche, Carte main[], int *taille, int *score, int *actif, int *perdu) {
 
     if (*actif == 0) return;
-    
+
     if (*taille_pioche <= 0) {
         printf("Plus de cartes !\n");
         *actif = 0;
@@ -13,7 +13,7 @@ void tour_joueur(Carte paquet[], int *taille_pioche, Carte main[], int *taille, 
     Carte c = carte_piochee(paquet, taille_pioche);
     printf("\nCarte piochée : %d\n", c.numero);
 
-    // Vérifier doublon
+    // Doublon
     for (int i = 0; i < *taille; i++) {
         if (main[i].numero == c.numero) {
             printf("Doublon ! Perdu !\n");
@@ -23,17 +23,16 @@ void tour_joueur(Carte paquet[], int *taille_pioche, Carte main[], int *taille, 
         }
     }
 
-    // Ajouter carte
+    // Ajout carte
     main[*taille] = c;
     (*taille)++;
 
-    // Ajouter score
     *score += c.numero;
 
     afficher_joueur(*score, main, *taille);
 
     if (*taille == 7) {
-        printf(" Victoire !\n");
+        printf("Victoire !\n");
         *actif = 0;
         return;
     }
