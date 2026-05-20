@@ -6,6 +6,7 @@
 #include <time.h>
 
 
+
 typedef struct{
     int numero;
     int bonus;

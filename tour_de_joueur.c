@@ -13,14 +13,16 @@ void tour_joueur(Carte paquet[], Joueur joueurs[], int *taille_pioche, Carte mai
     Carte c = carte_piochee(paquet, taille_pioche);
 
     // Doublon
-    for (int i = 0; i < *taille; i++) {
-        if (c.bonus == 0 && main[i].numero == c.numero) {
+    for (int j = 0; j < *taille; j++) {
+        if (c.bonus == 0 && main[j].numero == c.numero) {
             printf("Doublon ! Perdu !\n");
             *actif = 0;
             *perdu = 1;
             return;
         }
     }
+
+    
 
     // Ajout carte
     main[*taille] = c;

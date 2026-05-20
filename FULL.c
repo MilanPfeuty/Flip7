@@ -19,7 +19,7 @@ typedef struct {
 // Prototypes
 void vide_buffer();
 
-void afficher_joueur(int score, Carte cartes[], int taille);
+void afficher_joueur(Carte c, int score, Joueur joueurs[], Carte cartes[], int taille , int i);
 void affiche_pioche(Carte* paquet);
 void afficher_main(Joueur j);
 
@@ -34,7 +34,10 @@ void deroulement_partie(Carte paquet[], Joueur joueurs[], int nb_joueurs);
 
 int start(Joueur joueurs[], int *nb_joueurs);
 
-void tour_joueur(Carte paquet[], int *taille_pioche, Carte main[], int *taille, int *score, int *actif, int *perdu);
+void tour_joueur(Carte paquet[], Joueur joueurs[], int *taille_pioche, Carte main[], int *taille, int *score, int *actif, int *perdu, int i);
+
+
+int main_joueurs();
 
 
 // ================= FONCTIONS =================
@@ -69,12 +72,22 @@ void afficher_joueur(Carte c, int score, Joueur joueurs[], Carte cartes[], int t
             printf("+%d ", cartes[i].bonus);
         }
     }
-    printf("\nScore : %d\n", score);
+    printf("\nScore de la manche : %d\n", score);
+    printf("\nScore général : %d\n", joueurs[i].score+score);
+    printf("\n");
 }
 
 void affiche_pioche(Carte* paquet) {
-    for (int i = 0; i < 79; i++) {
-        printf("%d ", paquet[i].numero);
+    for (int i = 0; i < 85; i++) {
+        if (paquet[i].bonus == 0){
+            printf("%d ", paquet[i].numero);
+        }
+        else if (paquet[i].bonus == -2){
+            printf("x2 ");
+        }
+        else{
+            printf("+%d ", paquet[i].bonus);
+        }
     }
     printf("\n");
 }
@@ -87,12 +100,14 @@ void afficher_main(Joueur j) {
     printf("\n");
 }
 
+
 void calcul_score(Joueur *j) {
     j->score = 0;
     for (int i = 0; i < j->nb_carte; i++) {
         j->score += j->main[i].numero;
     }
 }
+
 
 Carte carte_piochee(Carte paquet[], int *taille) {
     int alea = rand() % (*taille);
@@ -221,10 +236,18 @@ void deroulement_partie(Carte paquet[], Joueur joueurs[], int nb_joueurs){
         }
 
         manche_n++;
+        
+        int verif;
 
-        printf("\nContinuer la partie ? (1 = oui, 0 = non) : ");
-        scanf("%d", &continuer_partie);
-        vide_buffer();
+        do {
+            printf("\nContinuer la partie ? (1 = oui, 0 = non) : ");
+            verif = scanf("%d", &continuer_partie);
+            vide_buffer();
+
+            if (verif != 1) {
+                printf("Erreur, entrer un entier\n");
+            }
+        } while (verif != 1);
     }
 
     printf("\n=== FIN DE PARTIE ===\n");
@@ -232,6 +255,7 @@ void deroulement_partie(Carte paquet[], Joueur joueurs[], int nb_joueurs){
         printf("%s : %d points\n", joueurs[i].nom, joueurs[i].score);
     }
 }
+
 
 
 int start(Joueur joueurs[], int *nb_joueurs) {
@@ -246,6 +270,7 @@ int start(Joueur joueurs[], int *nb_joueurs) {
     return 1;
 }
 
+
 void tour_joueur(Carte paquet[], Joueur joueurs[], int *taille_pioche, Carte main[], int *taille, int *score, int *actif, int *perdu, int i) {
 
     if (*actif == 0) return;
@@ -259,14 +284,16 @@ void tour_joueur(Carte paquet[], Joueur joueurs[], int *taille_pioche, Carte mai
     Carte c = carte_piochee(paquet, taille_pioche);
 
     // Doublon
-    for (int i = 0; i < *taille; i++) {
-        if (c.bonus == 0 && main[i].numero == c.numero) {
+    for (int j = 0; j < *taille; j++) {
+        if (c.bonus == 0 && main[j].numero == c.numero) {
             printf("Doublon ! Perdu !\n");
             *actif = 0;
             *perdu = 1;
             return;
         }
     }
+
+    
 
     // Ajout carte
     main[*taille] = c;
@@ -296,29 +323,38 @@ void tour_joueur(Carte paquet[], Joueur joueurs[], int *taille_pioche, Carte mai
     }
 }
 
+
+
 // ================= MAIN =================
 
 int main() {
     srand(time(NULL));
     
     Carte paquet[85];
-    int nb_joueurs;
-    int verif;
 
     // Saisie nombre de joueurs
+    int nb_joueurs;
+    int verif;
+    char extra;
+
     do {
         printf("Combien de joueurs ? : ");
-        verif = scanf("%d", &nb_joueurs);
-        vide_buffer();
+        verif = scanf("%d%c", &nb_joueurs, &extra);
 
-        if (nb_joueurs < 1){
-            printf("ERREUR ! Veuillez entrer un nombre de joueurs supérieur ou égale à 1\n");
-            return main();
+        if (verif == 2 && extra == '\n') {
+
+            if (nb_joueurs < 1) {
+                printf("ERREUR ! Veuillez entrer un nombre >= 1\n");
+                verif = 0;
+            }
+
+        } else {
+            printf("Erreur : entre un entier valide !\n");
+            vide_buffer();
+            verif = 0;
         }
-        if (verif != 1) {
-            printf("Erreur, entrer un entier\n");
-        }
-    } while (verif != 1);
+
+    } while (verif != 2);
 
     Joueur *joueurs;
     joueurs = malloc(nb_joueurs * sizeof(Joueur));
@@ -330,3 +366,4 @@ int main() {
     free(joueurs);
     return 0;
 }
+

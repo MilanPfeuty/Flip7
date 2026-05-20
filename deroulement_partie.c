@@ -65,10 +65,18 @@ void deroulement_partie(Carte paquet[], Joueur joueurs[], int nb_joueurs){
         }
 
         manche_n++;
+        
+        int verif;
 
-        printf("\nContinuer la partie ? (1 = oui, 0 = non) : ");
-        scanf("%d", &continuer_partie);
-        vide_buffer();
+        do {
+            printf("\nContinuer la partie ? (1 = oui, 0 = non) : ");
+            verif = scanf("%d", &continuer_partie);
+            vide_buffer();
+
+            if (verif != 1) {
+                printf("Erreur, entrer un entier\n");
+            }
+        } while (verif != 1);
     }
 
     printf("\n=== FIN DE PARTIE ===\n");

@@ -4,23 +4,30 @@ int main() {
     srand(time(NULL));
     
     Carte paquet[85];
-    int nb_joueurs;
-    int verif;
 
     // Saisie nombre de joueurs
+    int nb_joueurs;
+    int verif;
+    char extra;
+
     do {
         printf("Combien de joueurs ? : ");
-        verif = scanf("%d", &nb_joueurs);
-        vide_buffer();
+        verif = scanf("%d%c", &nb_joueurs, &extra);
 
-        if (nb_joueurs < 1){
-            printf("ERREUR ! Veuillez entrer un nombre de joueurs supérieur ou égale à 1\n");
-            return main();
+        if (verif == 2 && extra == '\n') {
+
+            if (nb_joueurs < 1) {
+                printf("ERREUR ! Veuillez entrer un nombre >= 1\n");
+                verif = 0;
+            }
+
+        } else {
+            printf("Erreur : entre un entier valide !\n");
+            vide_buffer();
+            verif = 0;
         }
-        if (verif != 1) {
-            printf("Erreur, entrer un entier\n");
-        }
-    } while (verif != 1);
+
+    } while (verif != 2);
 
     Joueur *joueurs;
     joueurs = malloc(nb_joueurs * sizeof(Joueur));

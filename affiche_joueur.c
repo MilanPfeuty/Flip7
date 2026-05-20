@@ -26,5 +26,7 @@ void afficher_joueur(Carte c, int score, Joueur joueurs[], Carte cartes[], int t
             printf("+%d ", cartes[i].bonus);
         }
     }
-    printf("\nScore : %d\n", score);
+    printf("\nScore de la manche : %d\n", score);
+    printf("\nScore général : %d\n", joueurs[i].score+score);
+    printf("\n");
 }
