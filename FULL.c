@@ -1,4 +1,4 @@
-/*
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
@@ -18,19 +18,24 @@ typedef struct {
 
 // Prototypes
 void vide_buffer();
-int start(Joueur joueurs[], int *nb_joueurs);
+
 void afficher_joueur(int score, Carte cartes[], int taille);
 void affiche_pioche(Carte* paquet);
 void afficher_main(Joueur j);
+
 void calcul_score(Joueur *j);
 Carte carte_piochee(Carte paquet[], int *taille);
-void creer_pioche(Carte paquet[]);
+
 int choix_joueur();
-void init_joueur(Joueur *j, char nom[]);
-int manche_perdue(Joueur j, Carte c);
-void restitution_nb_cartes(Joueur* j);
-void restitution_score(Joueur* j);
+
+void creer_pioche(Carte paquet[]);
+
+void deroulement_partie(Carte paquet[], Joueur joueurs[], int nb_joueurs);
+
+int start(Joueur joueurs[], int *nb_joueurs);
+
 void tour_joueur(Carte paquet[], int *taille_pioche, Carte main[], int *taille, int *score, int *actif, int *perdu);
+
 
 // ================= FONCTIONS =================
 
@@ -81,9 +86,18 @@ Carte carte_piochee(Carte paquet[], int *taille) {
 
 int choix_joueur() {
     int choix;
-    printf("Continuer ? (1 = oui, 0 = non) : ");
-    scanf("%d", &choix);
-    vide_buffer();
+
+    do {
+        printf("Continuer ? (1 = oui, 0 = non) : ");
+        scanf("%d", &choix);
+        vide_buffer();
+
+        if (choix != 1 && choix != 0) {
+            printf("(Veuillez entrer une valeur correspondate\n");
+        }
+
+    } while (choix != 1 && choix != 0);
+
     return choix;
 }
 
@@ -100,11 +114,86 @@ void creer_pioche(Carte paquet[]) {
     }
 }
 
-void init_joueur(Joueur *j, char nom[]) {
-    strcpy(j->nom, nom);
-    j->score = 0;
-    j->nb_carte = 0;
+
+void deroulement_partie(Carte paquet[], Joueur joueurs[], int nb_joueurs){
+
+    int continuer_partie = 1;
+    int manche_n = 1;
+
+    while (continuer_partie) {
+
+        printf("\n=== Début de la manche %d ===\n", manche_n);
+
+        int taille_pioche = 79;
+        creer_pioche(paquet);
+
+        int joueurs_actifs = nb_joueurs;
+
+        for (int i = 0; i < nb_joueurs; i++) {
+            joueurs[i].actif = 1;
+            joueurs[i].nb_carte = 0;
+        }
+
+        while (joueurs_actifs > 0) {
+
+            for (int i = 0; i < nb_joueurs; i++) {
+
+                if (joueurs[i].actif == 1) {
+
+                    printf("\n=== Tour de %s ===\n", joueurs[i].nom);
+
+                    int score_manche = 0;
+                    int perdu = 0;
+
+                    while (joueurs[i].actif == 1) {
+                        tour_joueur(paquet, &taille_pioche, joueurs[i].main, &joueurs[i].nb_carte, &score_manche, &joueurs[i].actif, &perdu);
+                    }
+
+                    if (!perdu) {
+                        joueurs[i].score += score_manche;
+                    } else {
+                        printf("%s a perdu → 0 point\n", joueurs[i].nom);
+                    }
+
+                    joueurs_actifs--;
+                }
+            }
+        }
+
+        // ===== FIN DE MANCHE =====
+        printf("\n=== Fin de la manche %d ===\n", manche_n);
+
+        int gagnant = -1;
+
+        for (int i = 0; i < nb_joueurs; i++) {
+            printf("%s : %d points\n", joueurs[i].nom, joueurs[i].score);
+
+            if (joueurs[i].score >= 100 && gagnant == -1) {
+                gagnant = i;
+            }
+        }
+
+        if (gagnant != -1) {
+            printf("\n%s a gagné la partie avec %d points !\n",
+                joueurs[gagnant].nom,
+                joueurs[gagnant].score);
+            break;
+        }
+
+        manche_n++;
+
+        printf("\nContinuer la partie ? (1 = oui, 0 = non) : ");
+        scanf("%d", &continuer_partie);
+        vide_buffer();
+    }
+
+    printf("\n=== FIN DE PARTIE ===\n");
+    for (int i = 0; i < nb_joueurs; i++) {
+        printf("%s : %d points\n", joueurs[i].nom, joueurs[i].score);
+    }
 }
+
+
 
 int start(Joueur joueurs[], int *nb_joueurs) {
     for (int i = 0; i < *nb_joueurs; i++) {
@@ -164,16 +253,15 @@ void tour_joueur(Carte paquet[], int *taille_pioche, Carte main[], int *taille, 
 
 int main() {
     srand(time(NULL));
-
+    
     Carte paquet[79];
-    Joueur *joueurs;
     int nb_joueurs;
     int verif;
 
-    // Saisie joueurs
+    // Saisie nombre de joueurs
     do {
         printf("Combien de joueurs ? : ");
-        verif = scanf("%d", &nb_joueurs); // ✅ correction
+        verif = scanf("%d", &nb_joueurs);
         vide_buffer();
 
         if (verif != 1) {
@@ -181,79 +269,14 @@ int main() {
         }
     } while (verif != 1);
 
+    Joueur *joueurs;
     joueurs = malloc(nb_joueurs * sizeof(Joueur));
 
     start(joueurs, &nb_joueurs);
 
-    int continuer_partie = 1;
-    int manche_n = 1;
-
-    while (continuer_partie) {
-
-        printf("\n=== Début de la manche %d ===\n", manche_n);
-
-        int taille_pioche = 79;
-        creer_pioche(paquet);
-
-        int joueurs_actifs = nb_joueurs;
-
-        for (int i = 0; i < nb_joueurs; i++) {
-            joueurs[i].actif = 1;
-            joueurs[i].nb_carte = 0;
-        }
-
-        while (joueurs_actifs > 0) {
-
-            for (int i = 0; i < nb_joueurs; i++) {
-
-                if (joueurs[i].actif == 1) {
-
-                    printf("\n=== Tour de %s ===\n", joueurs[i].nom);
-
-                    int score_manche = 0;
-                    int perdu = 0;
-
-                    while (joueurs[i].actif == 1) {
-                        tour_joueur(
-                            paquet,
-                            &taille_pioche,
-                            joueurs[i].main,
-                            &joueurs[i].nb_carte,
-                            &score_manche,
-                            &joueurs[i].actif,
-                            &perdu
-                        );
-                    }
-
-                    if (perdu) {
-                        printf("%s a perdu → 0 point\n", joueurs[i].nom);
-                    } else {
-                        joueurs[i].score += score_manche;
-                    }
-
-                    joueurs_actifs--;
-                }
-            }
-        }
-
-        printf("\n=== Fin de la manche %d ===\n", manche_n);
-        for (int i = 0; i < nb_joueurs; i++) {
-            printf("%s : %d points\n", joueurs[i].nom, joueurs[i].score);
-        }
-
-        manche_n++;
-
-        printf("\nContinuer la partie ? (1 = oui, 0 = non) : ");
-        scanf("%d", &continuer_partie);
-    }
-
-    printf("\n=== FIN DE PARTIE ===\n");
-    for (int i = 0; i < nb_joueurs; i++) {
-        printf("%s : %d points\n", joueurs[i].nom, joueurs[i].score);
-    }
+    deroulement_partie(paquet, joueurs, nb_joueurs);
 
     free(joueurs);
     return 0;
 }
 
-*/
