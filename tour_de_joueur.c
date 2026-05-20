@@ -1,6 +1,6 @@
 #include "Projet.h"
 
-void tour_joueur(Carte paquet[], int *taille_pioche, Carte main[], int *taille, int *score, int *actif, int *perdu) {
+void tour_joueur(Carte paquet[], Joueur joueurs[], int *taille_pioche, Carte main[], int *taille, int *score, int *actif, int *perdu, int i) {
 
     if (*actif == 0) return;
 
@@ -11,11 +11,10 @@ void tour_joueur(Carte paquet[], int *taille_pioche, Carte main[], int *taille, 
     }
 
     Carte c = carte_piochee(paquet, taille_pioche);
-    printf("\nCarte piochée : %d\n", c.numero);
 
     // Doublon
     for (int i = 0; i < *taille; i++) {
-        if (main[i].numero == c.numero) {
+        if (c.bonus == 0 && main[i].numero == c.numero) {
             printf("Doublon ! Perdu !\n");
             *actif = 0;
             *perdu = 1;
@@ -27,13 +26,22 @@ void tour_joueur(Carte paquet[], int *taille_pioche, Carte main[], int *taille, 
     main[*taille] = c;
     (*taille)++;
 
-    *score += c.numero;
+    if (c.bonus == 0) {
+        *score += c.numero;
+    }
+    else if (c.bonus == -2) {
+        *score *= 2;
+    }
+    else {
+        *score += c.bonus;
+    }
 
-    afficher_joueur(*score, main, *taille);
+    afficher_joueur(c, *score, joueurs, main, *taille, i);
 
     if (*taille == 7) {
-        printf("Victoire !\n");
+        printf("%s a gagné la manche ! Il obtient 15 points supplémentaires !\n", joueurs[i].nom);
         *actif = 0;
+        joueurs[i].score += 15;
         return;
     }
 

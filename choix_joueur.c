@@ -9,11 +9,10 @@ int choix_joueur() {
         vide_buffer();
 
         if (choix != 1 && choix != 0) {
-            printf("\n");
+            printf("Veuillez entrer une des 2 valeurs proposées !!\n");
         }
 
     } while (choix != 1 && choix != 0);
 
     return choix;
 }
-
