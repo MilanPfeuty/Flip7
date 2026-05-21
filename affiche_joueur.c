@@ -2,6 +2,10 @@
 
 void afficher_joueur(Carte c, int score, Joueur joueurs[], Carte cartes[], int taille , int i) {
     
+
+    for (int p=0; p<3; p++){
+        printf("\n");
+    }
     printf("\n--- JOUEUR %s ---\n", joueurs[i].nom);
 
     if (c.bonus == 0) {

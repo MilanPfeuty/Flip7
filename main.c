@@ -12,7 +12,7 @@ int main() {
 
     do {
         printf("Combien de joueurs ? : ");
-        verif = scanf("%ld%c", &nb_joueurs, &extra);
+        verif = scanf("%d%c", &nb_joueurs, &extra);
 
         if (verif == 2 && extra == '\n') {
 

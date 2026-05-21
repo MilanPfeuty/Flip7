@@ -72,7 +72,7 @@ void deroulement_partie(Carte paquet[], Joueur joueurs[], int nb_joueurs){
             printf("\nContinuer la partie ? (1 = oui, 0 = non) : ");
             verif = scanf("%d", &continuer_partie);
             vide_buffer();
-
+            
             if (verif != 1) {
                 printf("Erreur, entrer un entier\n");
             }
