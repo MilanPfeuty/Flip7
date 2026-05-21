@@ -6,20 +6,26 @@ int main() {
     Carte paquet[85];
 
     // Saisie nombre de joueurs
-    int nb_joueurs;
+    int nb_joueurs;    
     int verif;
     char extra;
 
     do {
         printf("Combien de joueurs ? : ");
-        verif = scanf("%d%c", &nb_joueurs, &extra);
+        verif = scanf("%ld%c", &nb_joueurs, &extra);
 
         if (verif == 2 && extra == '\n') {
 
-            if (nb_joueurs < 1) {
-                printf("ERREUR ! Veuillez entrer un nombre >= 1\n");
+            if(nb_joueurs > 1000){
+                printf("Trop de joueurs !!\n");
                 verif = 0;
             }
+
+            if (nb_joueurs < 1) {
+                printf("ERREUR ! Veuillez entrer un nombre >= 1 ou <= 2 milliards\n");
+                verif = 0;
+            }
+            
 
         } else {
             printf("Erreur : entre un entier valide !\n");
@@ -31,11 +37,17 @@ int main() {
 
     Joueur *joueurs;
     joueurs = malloc(nb_joueurs * sizeof(Joueur));
+    if (joueurs == NULL){
+        printf("Erreur : Mémoire insuffisante");
+        exit(1);
+    }
 
     start(joueurs, &nb_joueurs);
 
     deroulement_partie(paquet, joueurs, nb_joueurs);
 
     free(joueurs);
+
+
     return 0;
 }

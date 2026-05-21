@@ -83,4 +83,5 @@ void deroulement_partie(Carte paquet[], Joueur joueurs[], int nb_joueurs){
     for (int i = 0; i < nb_joueurs; i++) {
         printf("%s : %d points\n", joueurs[i].nom, joueurs[i].score);
     }
+    sauvegarder_scores(joueurs, nb_joueurs);
 }

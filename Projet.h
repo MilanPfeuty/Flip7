@@ -38,6 +38,8 @@ void creer_pioche(Carte paquet[]);
 
 void deroulement_partie(Carte paquet[], Joueur joueurs[], int nb_joueurs);
 
+void sauvegarder_scores(Joueur joueurs[], int nb_joueurs);
+
 int start(Joueur joueurs[], int *nb_joueurs);
 
 void tour_joueur(Carte paquet[], Joueur joueurs[], int *taille_pioche, Carte main[], int *taille, int *score, int *actif, int *perdu, int i);

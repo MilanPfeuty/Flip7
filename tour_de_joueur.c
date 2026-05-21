@@ -2,7 +2,9 @@
 
 void tour_joueur(Carte paquet[], Joueur joueurs[], int *taille_pioche, Carte main[], int *taille, int *score, int *actif, int *perdu, int i) {
 
-    if (*actif == 0) return;
+    if (*actif == 0) {
+        return;
+    }
 
     if (*taille_pioche <= 0) {
         printf("Plus de cartes !\n");
@@ -15,6 +17,15 @@ void tour_joueur(Carte paquet[], Joueur joueurs[], int *taille_pioche, Carte mai
     // Doublon
     for (int j = 0; j < *taille; j++) {
         if (c.bonus == 0 && main[j].numero == c.numero) {
+            if (c.bonus == 0) {
+                printf("\nCarte piochée : %d\n", c.numero);
+            }
+            else if (c.bonus == -2) {
+                printf("\nCarte piochée : x2\n");
+            }
+            else {
+                printf("\nCarte piochée : +%d\n", c.bonus);
+            }
             printf("Doublon ! Perdu !\n");
             *actif = 0;
             *perdu = 1;
@@ -51,3 +62,4 @@ void tour_joueur(Carte paquet[], Joueur joueurs[], int *taille_pioche, Carte mai
         *actif = 0;
     }
 }
+
