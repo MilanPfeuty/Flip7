@@ -68,13 +68,9 @@ La partie continue jusqu’à ce qu’un joueur atteigne le score de victoire.
 
 3) Nettoyer les fichiers compilés : 
 
-rm -f *.o 
+make clean
 
-Cette commande supprime les fichiers compilés. 
-
-rm exec 
-
-Cette commande supprime l’exécutable.
+Cette commande permet de supprimer les fichiers compilés ainsi que l'exécutables.
 
 
 
