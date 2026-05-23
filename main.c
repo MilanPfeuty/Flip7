@@ -42,7 +42,11 @@ int main() {
         exit(1);
     }
 
-    start(joueurs, &nb_joueurs);
+    debut(joueurs, &nb_joueurs);
+
+    for (int p=0; p<3; p++){
+        printf("\n");
+    }
 
     deroulement_partie(paquet, joueurs, nb_joueurs);
 

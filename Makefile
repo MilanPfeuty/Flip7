@@ -24,8 +24,8 @@ creer_pioche.o: creer_pioche.c
 deroulement_partie.o: deroulement_partie.c
 	gcc -c deroulement_partie.c
 
-start.o: start.c
-	gcc -c start.c
+debut.o: debut.c
+	gcc -c debut.c
 
 tour_de_joueur.o: tour_de_joueur.c
 	gcc -c tour_de_joueur.c
@@ -36,8 +36,8 @@ sauvegarde_joueurs.o: sauvegarde_joueurs.c
 outils.o: outils.c
 	gcc -c outils.c
 
-exec: main.o affiche_joueur.o afficher_main.o calcul_score.o carte_piochee.o choix_joueur.o creer_pioche.o deroulement_partie.o start.o tour_de_joueur.o sauvegarde_joueurs.o outils.o
-	gcc main.o affiche_joueur.o afficher_main.o calcul_score.o carte_piochee.o choix_joueur.o creer_pioche.o deroulement_partie.o start.o tour_de_joueur.o sauvegarde_joueurs.o outils.o -o Flip7
+exec: main.o affiche_joueur.o afficher_main.o calcul_score.o carte_piochee.o choix_joueur.o creer_pioche.o deroulement_partie.o debut.o tour_de_joueur.o sauvegarde_joueurs.o outils.o
+	gcc main.o affiche_joueur.o afficher_main.o calcul_score.o carte_piochee.o choix_joueur.o creer_pioche.o deroulement_partie.o debut.o tour_de_joueur.o sauvegarde_joueurs.o outils.o -o Flip7
 
 clean:
 	rm -f *.o

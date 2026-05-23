@@ -12,6 +12,10 @@ int choix_joueur() {
             printf("Veuillez entrer une des 2 valeurs proposées !!\n");
         }
 
+        for (int p=0; p<3; p++){
+            printf("\n");
+        }
+
     } while (choix != 1 && choix != 0);
 
     return choix;
