@@ -44,14 +44,11 @@ int main() {
 
     debut(joueurs, &nb_joueurs);
 
-    for (int p=0; p<3; p++){
-        printf("\n");
-    }
+    printf("\n\n\n");
 
     deroulement_partie(paquet, joueurs, nb_joueurs);
 
     free(joueurs);
-
 
     return 0;
 }

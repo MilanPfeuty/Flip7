@@ -39,15 +39,7 @@ void tour_joueur(Carte paquet[], Joueur joueurs[], int *taille_pioche, Carte mai
     main[*taille] = c;
     (*taille)++;
 
-    if (c.bonus == 0) {
-        *score += c.numero;
-    }
-    else if (c.bonus == -2) {
-        *score *= 2;
-    }
-    else {
-        *score += c.bonus;
-    }
+    *score = calcul_score(main, *taille);
 
     afficher_joueur(c, *score, joueurs, main, *taille, i);
 
@@ -62,4 +54,3 @@ void tour_joueur(Carte paquet[], Joueur joueurs[], int *taille_pioche, Carte mai
         *actif = 0;
     }
 }
-

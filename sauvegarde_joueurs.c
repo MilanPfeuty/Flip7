@@ -16,7 +16,7 @@ void sauvegarder_scores(Joueur joueurs[], int nb_joueurs) {
 
         if (fichier == NULL) {
             printf("Erreur lors de l'ouverture du fichier\n");
-            exit(2);
+            return;
         }
 
         fprintf(fichier, "=== RESULTATS DE LA PARTIE ===\n\n");

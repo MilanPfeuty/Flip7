@@ -77,9 +77,7 @@ void deroulement_partie(Carte paquet[], Joueur joueurs[], int nb_joueurs){
                 printf("Erreur, entrer un entier\n");
             }
 
-            for (int p=0; p<3; p++){
-                printf("\n");
-            }
+            printf("\n\n\n");
 
         } while (verif != 1);
     }

@@ -15,15 +15,15 @@ void afficher_joueur(Carte c, int score, Joueur joueurs[], Carte cartes[], int t
     }
 
     printf("Main de %s : ", joueurs[i].nom);
-    for (int i = 0; i < taille; i++) {
-        if (cartes[i].bonus == 0) {
-            printf("%d ", cartes[i].numero);
+    for (int j = 0; j < taille; j++) {
+        if (cartes[j].bonus == 0) {
+            printf("%d ", cartes[j].numero);
         }
-        else if (cartes[i].bonus == -2) {
+        else if (cartes[j].bonus == -2) {
             printf("x2 ");
         }
         else {
-            printf("+%d ", cartes[i].bonus);
+            printf("+%d ", cartes[j].bonus);
         }
     }
     printf("\nScore de la manche : %d\n", score);

@@ -2,21 +2,23 @@
 
 int choix_joueur() {
     int choix;
+    int verif;
 
     do {
         printf("Continuer ? (1 = oui, 0 = non) : ");
-        scanf("%d", &choix);
+        verif = scanf("%d", &choix);
         vide_buffer();
 
-        if (choix != 1 && choix != 0) {
-            printf("Veuillez entrer une des 2 valeurs proposées !!\n");
+        if (verif != 1) {
+            printf("Erreur : entre un nombre !\n");
+        }
+        else if (choix != 0 && choix != 1) {
+            printf("Veuillez entrer 1 ou 0\n");
         }
 
-        for (int p=0; p<3; p++){
-            printf("\n");
-        }
+        printf("\n\n\n");
 
-    } while (choix != 1 && choix != 0);
+    } while (verif != 1 || (choix != 0 && choix != 1));
 
     return choix;
 }
