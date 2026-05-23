@@ -79,9 +79,12 @@ Cette commande permet de supprimer les fichiers compilés ainsi que l'exécutabl
 
 Aperçu du jeu 
 
+
 Une image contenant texte, capture d’écran, logiciel, Logiciel multimédia
 
-Le contenu généré par l’IA peut être incorrect. 
+Le contenu généré par l’IA peut être incorrect.
+
+
 
 Construit avec 
 
