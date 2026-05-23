@@ -6,7 +6,7 @@ FLIP 7
 
 À propos  
 
-Flip 7 est un jeu de cartes mêlant hasard, stratégie et prise de risque.                                      Le principe est simple : retourner des cartes pour accumuler des points sans jamais obtenir deux fois le même numéro. Plus les joueurs prennent de risques, plus ils peuvent gagner gros… ou tout perdre.  
+Flip 7 est un jeu de cartes mêlant hasard, stratégie et prise de risque. Le principe est simple : retourner des cartes pour accumuler des points sans jamais obtenir deux fois le même numéro. Plus les joueurs prennent de risques, plus ils peuvent gagner gros… ou tout perdre.  
 
  
 
@@ -74,7 +74,12 @@ Cette commande supprime les fichiers compilés.
 
 rm exec 
 
-Cette commande supprime l’exécutable. 
+Cette commande supprime l’exécutable.
+
+
+
+
+
 
 Aperçu du jeu 
 
@@ -95,8 +100,6 @@ Utilisée pour les entrées/sorties, la gestion mémoire et les fonctions de bas
  
 
 Documentation 
-
- 
 
 C Reference (cppreference) — Référence complète du langage C (syntaxe, fonctions, comportement)  
 
