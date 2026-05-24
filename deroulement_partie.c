@@ -49,7 +49,7 @@ void deroulement_partie(Carte paquet[], Joueur joueurs[], int nb_joueurs){
                     // et qu'il n'a pas perdu
                     while (joueurs[i].actif == 1) {
 
-                        tour_joueur(paquet, joueurs, &taille_pioche, joueurs[i].main, &joueurs[i].nb_carte, &score_manche, &joueurs[i].actif, &perdu, i, stats_numero, stats_bonus);
+                        tour_joueur(paquet, joueurs, &taille_pioche, joueurs[i].main, &joueurs[i].nb_carte, &score_manche, &joueurs[i].actif, &perdu, i, stats_numero, stats_bonus, nb_joueurs);
                     }
 
                     // Si le joueur n'a pas perdu,

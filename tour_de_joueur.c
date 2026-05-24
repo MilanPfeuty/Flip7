@@ -1,7 +1,7 @@
 #include "Projet.h"
 
 // Gère un tour de joueur (piocher, vérifier s'il y a un doublon, score, fin)
-void tour_joueur(Carte paquet[], Joueur joueurs[], int *taille_pioche, Carte main[], int *taille, int *score, int *actif, int *perdu, int i, int stats_numero[], int stats_bonus[]) {
+void tour_joueur(Carte paquet[], Joueur joueurs[], int *taille_pioche, Carte main[], int *taille, int *score, int *actif, int *perdu, int i, int stats_numero[], int stats_bonus[], int nb_joueurs) {
 
     // Si le joueur n'est plus actif, on quitte immédiatement la fonction
     if (*actif == 0) {
@@ -76,7 +76,9 @@ void tour_joueur(Carte paquet[], Joueur joueurs[], int *taille_pioche, Carte mai
     *score = calcul_score(main, *taille);
 
     afficher_joueur(c, *score, joueurs, main, *taille, i);
-    afficher_stats(stats_numero, stats_bonus);
+    if (nb_joueurs >= 11){
+        afficher_stats(stats_numero, stats_bonus);
+    }
 
     // Si le joueur atteint 7 cartes sans perdre,
     // il gagne la manche et obtient un bonus

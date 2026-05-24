@@ -41,7 +41,7 @@ void sauvegarder_scores(Joueur joueurs[], int nb_joueurs);
 
 int debut(Joueur joueurs[], int *nb_joueurs);
 
-void tour_joueur(Carte paquet[], Joueur joueurs[], int *taille_pioche, Carte main[], int *taille, int *score, int *actif, int *perdu, int i, int stats_numero[], int stats_bonus[]);
+void tour_joueur(Carte paquet[], Joueur joueurs[], int *taille_pioche, Carte main[], int *taille, int *score, int *actif, int *perdu, int i, int stats_numero[], int stats_bonus[], int nb_joueurs);
 
 
 int main();
