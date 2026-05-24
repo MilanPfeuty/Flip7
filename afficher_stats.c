@@ -8,7 +8,6 @@ void afficher_stats(int stats_numero[], int stats_bonus[]) {
     for (int i = 0; i < 13; i++) {
 
         if (stats_numero[i] > 0) {
-
             printf("Carte %d : %d piochée(s)\n", i, stats_numero[i]);
         }
     }
