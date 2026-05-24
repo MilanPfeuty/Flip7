@@ -78,6 +78,7 @@ void tour_joueur(Carte paquet[], Joueur joueurs[], int *taille_pioche, Carte mai
     afficher_joueur(c, *score, joueurs, main, *taille, i);
     if (nb_joueurs >= 11){
         afficher_stats(stats_numero, stats_bonus);
+        printf("\n\n\n");
     }
 
     // Si le joueur atteint 7 cartes sans perdre,
