@@ -7,15 +7,12 @@ void sauvegarder_scores(Joueur joueurs[], int nb_joueurs) {
     char nom_fichier[100];
 
     printf("\nVoulez-vous sauvegarder les scores ? (1 = oui, 0 = non) : ");
-
     scanf("%d", &choix);
-
     vide_buffer();
 
     if (choix == 1) {
 
         printf("Nom du fichier : ");
-
         scanf("%s", nom_fichier);
 
         // Ouverture du fichier en mode écriture
