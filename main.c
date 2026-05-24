@@ -22,25 +22,18 @@ int main() {
         if (verif == 2 && extra == '\n') {
 
             if(nb_joueurs > 1000){
-
                 printf("Trop de joueurs !!\n");
-
                 verif = 0;
             }
 
             if (nb_joueurs < 1) {
-
                 printf("ERREUR ! Veuillez entrer un nombre >= 1 ou <= 2 milliards\n");
-
                 verif = 0;
             }
            
-        } else {
-
+        }else {
             printf("Erreur : entre un entier valide !\n");
-
             vide_buffer();
-
             verif = 0;
         }
 
@@ -52,9 +45,7 @@ int main() {
     joueurs = malloc(nb_joueurs * sizeof(Joueur));
 
     if (joueurs == NULL){
-
         printf("Erreur : Mémoire insuffisante");
-
         exit(1);
     }
 
