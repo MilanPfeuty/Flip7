@@ -10,6 +10,17 @@ void deroulement_partie(Carte paquet[], Joueur joueurs[], int nb_joueurs){
     int taille_pioche = 85;
     creer_pioche(paquet);
 
+    int stats_numero[13];
+    int stats_bonus[6];
+
+    for (int i = 0; i < 13; i++) {
+        stats_numero[i] = 0;
+    }
+
+    for (int i = 0; i < 6; i++) {
+        stats_bonus[i] = 0;
+    }
+
     while (continuer_partie) {
 
         printf("\n=== Début de la manche %d ===\n", manche_n);
@@ -38,7 +49,7 @@ void deroulement_partie(Carte paquet[], Joueur joueurs[], int nb_joueurs){
                     // et qu'il n'a pas perdu
                     while (joueurs[i].actif == 1) {
 
-                        tour_joueur(paquet, joueurs, &taille_pioche, joueurs[i].main, &joueurs[i].nb_carte, &score_manche, &joueurs[i].actif, &perdu, i);
+                        tour_joueur(paquet, joueurs, &taille_pioche, joueurs[i].main, &joueurs[i].nb_carte, &score_manche, &joueurs[i].actif, &perdu, i, stats_numero, stats_bonus);
                     }
 
                     // Si le joueur n'a pas perdu,
