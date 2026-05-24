@@ -1,12 +1,18 @@
 #include "Projet.h"
 
+// Demande au joueur s'il veut continuer
 int choix_joueur() {
+
     int choix;
     int verif;
 
     do {
+
         printf("Continuer ? (1 = oui, 0 = non) : ");
+
+        // scanf retourne le nombre de valeurs correctement lues
         verif = scanf("%d", &choix);
+
         vide_buffer();
 
         if (verif != 1) {
