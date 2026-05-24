@@ -12,9 +12,7 @@ void tour_joueur(Carte paquet[], Joueur joueurs[], int *taille_pioche, Carte mai
     if (*taille_pioche <= 0) {
 
         printf("Plus de cartes !\n");
-
         *actif = 0;
-
         return;
     }
 
@@ -27,13 +25,6 @@ void tour_joueur(Carte paquet[], Joueur joueurs[], int *taille_pioche, Carte mai
     stats_numero[c.numero]++;
     }
     else {
-
-        // Cartes bonus :
-        // +2 → case 0
-        // +4 → case 1
-        // ...
-        // x2 → case 5
-
         if (c.bonus == -2) {
             stats_bonus[5]++;
         }
@@ -91,7 +82,6 @@ void tour_joueur(Carte paquet[], Joueur joueurs[], int *taille_pioche, Carte mai
         );
 
         *actif = 0;
-
         joueurs[i].score += 15;
 
         return;
